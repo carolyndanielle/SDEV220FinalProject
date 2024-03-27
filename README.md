@@ -1,2 +1,2 @@
-# SDEV_220_Final_Project_TeamName
+# SDEV_220_Final_Group2
 SDEV220 Group Project
