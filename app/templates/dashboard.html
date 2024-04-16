@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<h1>Welcome to Your Dashboard</h1>
+<p>This is your main dashboard area after logging in.</p>
+<nav>
+    <a href="{% url 'profile' %}">My Profile</a>
+    <a href="{% url 'settings' %}">Settings</a>
+    <!-- Additional navigation links -->
+</nav>
+<!-- Example of a dynamic data display -->
+<div>
+    <h2>Your Activities</h2>
+    {% for activity in user_activities %}
+    <p>{{ activity.description }}</p>
+    {% endfor %}
+</div>
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
