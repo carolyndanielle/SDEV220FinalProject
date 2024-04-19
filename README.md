@@ -2,7 +2,7 @@
 SDEV_220_Final_Group2
 
 ## Client
-**Happy Paws Pet Clinic** - A well-established veterinary clinic located in Lafayette, IN dedicated to providing comprehensive healthcare services for pets, including routine check-ups, emergency care, and specialized treatments.
+**Happy Paws Pet Clinic** - A well-established veterinary clinic located in indiana dedicated to providing comprehensive healthcare services for pets, including routine check-ups, emergency care, and specialized treatments.
 
 ## Scope of the System
 - **User Authentication:** Secure login and sign-up system for pet owners.
