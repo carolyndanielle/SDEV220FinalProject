@@ -61,9 +61,3 @@ We will utilize **Discord** for daily communication and updates. Regular team me
 - A GitHub repository with documented code.
 - A Class Diagram illustrating the system architecture.
 - Compliance with all specified system requirements.
-
-## Links for this Project
-- [GitHub](#)
-- [Kanban Board](#)
-- [Trello](#)
-- [UML Class Diagram](#)
