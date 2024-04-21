@@ -64,5 +64,5 @@ We will utilize **Discord** for daily communication and updates. Regular team me
 
 ## Collaborators
 - Front-End [aalizardi](https://github.com/aalizardi)
-- Back-End [@BenziCorrales](https://github.com/BenziCorrales)
-- Full-Stack [@carolyndanielle](https://github.com/carolyndanielle)
+- Back-End [BenziCorrales](https://github.com/BenziCorrales)
+- Full-Stack [carolyndanielle](https://github.com/carolyndanielle)
