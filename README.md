@@ -63,6 +63,6 @@ We will utilize **Discord** for daily communication and updates. Regular team me
 - Compliance with all specified system requirements.
 
 ## Collaborators
-- Full-Stack/Team Lead [carolyndanielle](https://github.com/carolyndanielle)
-- Front-End [aalizardi](https://github.com/aalizardi)
-- Back-End [BenziCorrales](https://github.com/BenziCorrales)
+- Team Lead & Full-Stack Developer: [carolyndanielle](https://github.com/carolyndanielle)
+- Front-End Developer: [aalizardi](https://github.com/aalizardi)
+- Back-End Developer: [BenziCorrales](https://github.com/BenziCorrales)
