@@ -1,24 +1,32 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
-{% block title %}Dashboard{% endblock %}
-
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-<h1>Welcome to Your Dashboard</h1>
-<p>This is your main dashboard area after logging in.</p>
-<nav>
-    <a href="{% url 'profile' %}">My Profile</a>
-    <a href="{% url 'settings' %}">Settings</a>
-    <!-- Additional navigation links -->
-</nav>
-<!-- Example of a dynamic data display -->
-<div>
-    <h2>Your Activities</h2>
-    {% for activity in user_activities %}
-    <p>{{ activity.description }}</p>
-    {% endfor %}
+<!-- Overlay container for the dashboard content -->
+<div class="dashboard-container">
+    <div class="dashboard-content">
+        <h1>Pet Owner Dashboard</h1>
+        <p>Welcome to Your Dashboard</p>
+
+        <!-- Top-right navigation for profile and settings -->
+        <nav class="top-right-nav">
+            <ul>
+                <li><a href="{% url 'app:profile' %}">My Profile</a></li>
+                <li><a href="{% url 'app:settings' %}">Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main dashboard navigation -->
+        <nav class="dashboard-nav">
+            <ul>
+                <li><a href="{% url 'manage_pets' %}">Manage Pets</a></li>
+                <li><a href="{% url 'medical_records' %}">Medical Records</a></li>
+                <li><a href="{% url 'vaccination_records' %}">Vaccination Records</a></li>
+                <li><a href="{% url 'view_appointments' %}">View Appointments</a></li>
+                <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
+                <li><a href="{% url 'cancel_appointment' %}">Cancel Appointment</a></li>
+            </ul>
+        </nav>
+        <!-- Additional dashboard widgets or content areas go here -->
+    </div>
 </div>
-<script src="{% static 'js/dashboard.js' %}"></script>
 {% endblock %}

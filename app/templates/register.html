@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
-
 {% block content %}
-<h2>Register</h2>
-<form method="post">
-    {% csrf_token %}
-    <!-- form fields for registration -->
-    <button type="submit">Register</button>
-</form>
+<div class="homepage">
+    <div class="hero-text">
+        <h1>Register for Happy Paws Pet Clinic</h1>
+        <p>Create your account to manage your pet's health</p>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password1" placeholder="Password" required>
+            <input type="password" name="password2" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

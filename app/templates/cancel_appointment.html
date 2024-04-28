@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Cancel Appointment</h1>
+    <p>Are you sure you want to cancel the following appointment?</p>
+
+    <div class="appointment-details">
+        <p><strong>Date:</strong> {{ appointment.date }}</p>
+        <p><strong>Time:</strong> {{ appointment.time }}</p>
+        <p><strong>Description:</strong> {{ appointment.description }}</p>
+    </div>
+
+    <form action="{% url 'cancel_appointment' appointment.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+{% endblock %}

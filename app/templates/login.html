@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
-
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    <!-- form fields for login -->
-    <button type="submit">Login</button>
-</form>
+<div class="homepage">
+    <!--Background elements are part of the base template, no need to redefine them here-->
+    <div class="hero-text">
+        <h1>Happy Paws Pet Clinic</h1>
+        <p>Login to manage your pet's health</p>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'register' %}" class="btn btn-primary">Register</a></p>
+    </div>
+</div>
 {% endblock %}

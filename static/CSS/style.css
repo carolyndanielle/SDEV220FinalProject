@@ -1,9 +1,87 @@
+html {
+    font-size: 20px;
+    margin: 0;
+    background: #0c0207;
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
 }
 
+/* Background and Animated Elements */
+#frame {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#sky, #buildings, #moon, #cat, #wall {
+    position: absolute;
+}
+
+#sky {
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #0B4C5F 0%, #04B4AE 52%, #0c0207 100%);
+    z-index: -30;
+}
+
+#buildings {
+    background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526533/eva/edificiosOne_fsg7nx.svg');
+    bottom: 23em;
+    width: 100%;
+    height: 277px;
+    background-repeat: repeat-x;
+    animation: move_buildings 120s linear infinite;
+    z-index: -10;
+}
+
+#moon {
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    box-shadow: 30px 10px 0 #F7F8E0;
+    top: 2em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -19;
+}
+
+#wall {
+    bottom: 0;
+    width: 100%;
+    height: 23em;
+    background: linear-gradient(to bottom, #416663 0%, #0c0207 19%);
+}
+
+#cat {
+    background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526571/eva/gatito_pushui.svg');
+    top: 410px;
+    left: 2em;
+    width: 507.5px;
+    height: 297px;
+    animation: cat_sprite_animation 1.2s steps(16, end) infinite;
+    z-index: 10;
+}
+
+@keyframes move_buildings {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
+@keyframes cat_sprite_animation { 
+    from { background-position: 0 0; }
+    to { background-position: -8120px 0; }
+}
+
+/* Dashboard and General Page Styles */
 .header {
     background: #0066cc;
     color: white;
@@ -14,4 +92,129 @@ body {
     margin-top: 20px;
     padding: 10px;
     border: 1px solid #ccc;
+}
+
+/* Additional Dashboard Styles */
+/* General styles for the dashboard container */
+.dashboard-container {
+    position: relative;
+    z-index: 2;
+    padding-top: 20px;
+}
+
+.dashboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Needed to position the top-right-nav absolutely within this container */
+}
+
+/* Style for the top-right navigation */
+.top-right-nav ul {
+    position: absolute;
+    right: 0;
+    top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-right-nav ul li {
+    display: inline-block;
+}
+
+.top-right-nav ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    margin: 5px; /* Add a little margin for visual separation */
+}
+
+.top-right-nav ul li a:hover {
+    background-color: #e8e8e8;
+}
+
+/* Main dashboard navigation styles remain the same */
+.dashboard-nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 20px; /* Space from top navigation */
+}
+
+.dashboard-nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.dashboard-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.dashboard-nav ul li a:hover {
+    background-color: #f2f2f2;
+}
+
+/*for the login form*/
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/*for the appointment form*/
+.appointment-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#calendar {
+    margin-top: 20px;
 }

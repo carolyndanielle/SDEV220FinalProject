@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<!-- Include FullCalendar CSS -->
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css' rel='stylesheet' />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css' rel='stylesheet' />
+{% endblock %}
+
+{% block extra_js %}
+<!-- Include FullCalendar JavaScript -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js'></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['dayGrid'],
+            dateClick: function(info) {
+                // Populate the date field in the Django form
+                document.getElementById('id_date').value = info.dateStr;  // Assuming the form field's ID is 'id_date'
+                alert('Date selected: ' + info.dateStr);
+            }
+        });
+        calendar.render();
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="appointment-container">
+    <h1>Book Your Appointment</h1>
+    <!-- Calendar will be rendered here -->
+    <div id="calendar"></div>
+    <!-- Form to handle additional booking details or time selection -->
+    <form method="post" action="{% url 'book_appointment' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Book Appointment</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+    .container {
+        color: #ffffff; /* Sets text color to white within the container */
+    }
+    /* Ensuring tables and buttons within the container also fit the design */
+    .table th, .table td, .btn {
+        color: #ffffff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container white-text">  <!-- Added white-text class here -->
+    <h1>Manage Your Pets</h1>
+    <div class="pet-form">
+        <form method="post" action="{% url 'add_pet' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save Pet</button>
+        </form>
+    </div>
+    <div class="pet-list">
+        <h2>Your Pets</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Breed</th>
+                    <th>Age</th>
+                    <th>Weight</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pet in pets %}
+                <tr>
+                    <td>{{ pet.name }}</td>
+                    <td>{{ pet.species }}</td>
+                    <td>{{ pet.breed }}</td>
+                    <td>{{ pet.age }}</td>
+                    <td>{{ pet.weight }}</td>
+                    <td>
+                        <a href="{% url 'edit_pet' pet.id %}" class="btn btn-sm btn-secondary">Edit</a>
+                        <a href="{% url 'delete_pet' pet.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

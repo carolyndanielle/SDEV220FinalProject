@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1>Medical Records</h1>
+    <p>Here you can view all medical records for your pets.</p>
+
+    <!-- Optional: Add a search form to filter records -->
+    <form method="get" class="search-form">
+        <input type="text" name="search" placeholder="Search records...">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Medical Records Table -->
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Pet Name</th>
+                    <th>Date</th>
+                    <th>Treatment</th>
+                    <th>Diagnosis</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.pet.name }}</td>
+                    <td>{{ record.date }}</td>
+                    <td>{{ record.treatment }}</td>
+                    <td>{{ record.diagnosis }}</td>
+                    <td>{{ record.notes }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No medical records found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

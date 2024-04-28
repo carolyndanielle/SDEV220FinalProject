@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+    .container {
+        color: #ffffff; /* Sets text color to white within the container */
+    }
+    /* Ensuring tables and buttons within the container also fit the design */
+    .table th, .table td, .btn {
+        color: #ffffff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Vaccination Records</h1>
+    {% if vaccinations %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pet Name</th>
+                <th>Vaccine</th>
+                <th>Date Administered</th>
+                <th>Veterinarian</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vaccination in vaccinations %}
+            <tr>
+                <td>{{ vaccination.pet.name }}</td>
+                <td>{{ vaccination.vaccine }}</td>
+                <td>{{ vaccination.date | date:"Y-m-d" }}</td>
+                <td>{{ vaccination.veterinarian }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No vaccination records available.</p>
+    {% endif %}
+</div>
+{% endblock %}
