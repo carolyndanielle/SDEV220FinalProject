@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+body {
+    color: #0e0d0d;  /* Ensuring text is black for readability */
+}
+.container {
+    max-width: 960px;  /* Control the maximum width of the container */
+    margin: auto;  /* Center the container on the page */
+    padding: 20px;  /* Space inside the container */
+    background-color: rgba(255, 255, 255, 0.8);  /* Semi-transparent white background */
+    border-radius: 10px;  /* Rounded corners for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  /* Subtle shadow for depth */
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'profile' %}" class="profile-link">Back to Profile</a>
+    <h1>Edit Profile</h1>
+    <hr>
+
+    <div class="profile-details">
+        <!-- Email -->
+        <p><strong>Email:</strong> {{ user.email }} <a href="{% url 'edit_email' %}">Edit</a></p>
+
+        <!-- First Name -->
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+
+        <!-- Last Name -->
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+
+        <!-- Phone Number -->
+        <p><strong>Phone Number:</strong> {{ user.profile.phone }} <a href="{% url 'edit_phone' %}">Edit</a></p>
+
+        <!-- Address -->
+        <p><strong>Address:</strong> {{ user.profile.address }} <a href="{% url 'edit_address' %}">Edit</a></p>
+    </div>
+
+    <!-- Change Password -->
+    <h2>Change Password</h2>
+    <p><a href="{% url 'change_password' %}">Change Password</a></p>
+</div>
+{% endblock %}

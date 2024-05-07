@@ -11,7 +11,7 @@
         <nav class="top-right-nav">
             <ul>
                 <li><a href="{% url 'app:profile' %}">My Profile</a></li>
-                <li><a href="{% url 'app:settings' %}">Settings</a></li>
+                <li><a href="{% url 'app:logout' %}">logout</a></li>
             </ul>
         </nav>
 
@@ -21,9 +21,8 @@
                 <li><a href="{% url 'manage_pets' %}">Manage Pets</a></li>
                 <li><a href="{% url 'medical_records' %}">Medical Records</a></li>
                 <li><a href="{% url 'vaccination_records' %}">Vaccination Records</a></li>
-                <li><a href="{% url 'view_appointments' %}">View Appointments</a></li>
+                <li><a href="{% url 'appointments_view' %}">View Appointments</a></li>
                 <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
-                <li><a href="{% url 'cancel_appointment' %}">Cancel Appointment</a></li>
             </ul>
         </nav>
         <!-- Additional dashboard widgets or content areas go here -->

@@ -2,42 +2,74 @@
 
 {% block extra_css %}
 <style>
-    .container {
-        color: #ffffff; /* Sets text color to white within the container */
+    body {
+        font-family: Arial, sans-serif;
     }
-    /* Ensuring tables and buttons within the container also fit the design */
-    .table th, .table td, .btn {
-        color: #ffffff;
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8); 
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
+    .table th, .table td {
+        text-align: left;
+        padding: 8px;
+        background-color: #e9e9e9;
+        border-bottom: 2px solid #ddd;
+    }
+    th {
+        background-color: #f9f9f9;
+    }
+    a {
+        color: #337ab7;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
     }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
     <h1>Vaccination Records</h1>
-    {% if vaccinations %}
+    {% if records %}
     <table class="table">
         <thead>
             <tr>
                 <th>Pet Name</th>
-                <th>Vaccine</th>
-                <th>Date Administered</th>
-                <th>Veterinarian</th>
+                <th>Uploaded Date</th>
+                <th>Document</th>
             </tr>
         </thead>
         <tbody>
-            {% for vaccination in vaccinations %}
+            {% for record in records %}
             <tr>
-                <td>{{ vaccination.pet.name }}</td>
-                <td>{{ vaccination.vaccine }}</td>
-                <td>{{ vaccination.date | date:"Y-m-d" }}</td>
-                <td>{{ vaccination.veterinarian }}</td>
+                <td>{{ record.pet.name }}</td>
+                <td>{{ record.uploaded_date|date:"Y-m-d" }}</td>
+                <td>
+                    <a href="{{ record.document.url }}">View</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No vaccination records found.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% else %}
-    <p>No vaccination records available.</p>
+    <p>You have no vaccination records.</p>
     {% endif %}
 </div>
 {% endblock %}

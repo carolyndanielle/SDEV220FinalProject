@@ -2,55 +2,73 @@
 
 {% block extra_css %}
 <style>
-    .container {
-        color: #ffffff; /* Sets text color to white within the container */
+    body {
+        color: #0e0d0d;  /* Ensuring text is black for readability */
     }
-    /* Ensuring tables and buttons within the container also fit the design */
-    .table th, .table td, .btn {
-        color: #ffffff;
+    .container {
+        max-width: 960px;  /* Control the maximum width of the container */
+        margin: auto;  /* Center the container on the page */
+        padding: 20px;  /* Space inside the container */
+        background-color: rgba(255, 255, 255, 0.8);  /* Semi-transparent white background */
+        border-radius: 10px;  /* Rounded corners for the container */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  /* Subtle shadow for depth */
+    }
+    .pet_detail-link {
+        color: #0e0d0d;  /* Stylish green for links */
+    }
+    .pet_detail-link:hover {
+        color: #5147db;  /* Change to yellow when hovered over */
+        text-decoration: none;  /* Removing underline on hover for a cleaner look */
+    }
+    .table {
+        width: 100%;  /* Table width is the full width of the container */
+        margin-top: 20px;  /* Space above the table */
+        border-collapse: collapse;  /* Borders between cells are merged */
+    }
+    .table th, .table td {
+        text-align: center;  /* Center aligning text in table headers and cells */
+        padding: 10px;  /* Padding inside table cells */
+        border-bottom: 1px solid #555454;  /* row separation */
+    }
+    a {
+        color: #5147db;  /* Stylish green for links */
+        text-decoration: none;  /* No underline on links */
+    }
+    a:hover {
+        color: #5147db;  /* Change to yellow when hovered over */
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container white-text">  <!-- Added white-text class here -->
+<div class="container">
+    <a href="{% url 'dashboard' %}" class="dashboard-link">Back to Dashboard</a>
     <h1>Manage Your Pets</h1>
-    <div class="pet-form">
-        <form method="post" action="{% url 'add_pet' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Save Pet</button>
-        </form>
-    </div>
-    <div class="pet-list">
-        <h2>Your Pets</h2>
+    {% if pets %}
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Name</th>
-                    <th>Species</th>
                     <th>Breed</th>
                     <th>Age</th>
-                    <th>Weight</th>
-                    <th>Actions</th>
+                    <th>Weight (lbs)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for pet in pets %}
                 <tr>
-                    <td>{{ pet.name }}</td>
-                    <td>{{ pet.species }}</td>
+                    <td><a href="{% url 'pet_detail' pet.id %}" >View</a></td>
+                    <td>{{ pet.name }}</a></td>
                     <td>{{ pet.breed }}</td>
                     <td>{{ pet.age }}</td>
                     <td>{{ pet.weight }}</td>
-                    <td>
-                        <a href="{% url 'edit_pet' pet.id %}" class="btn btn-sm btn-secondary">Edit</a>
-                        <a href="{% url 'delete_pet' pet.id %}" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+    {% else %}
+        <p>You have no pets added.</p>
+    {% endif %}
 </div>
 {% endblock %}

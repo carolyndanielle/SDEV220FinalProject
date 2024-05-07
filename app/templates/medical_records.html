@@ -1,44 +1,79 @@
 {% extends 'base.html' %}
 
+{% block extra_css %}
+<style>
+    body {
+        color: #0e0d0d; /* Ensuring text is black for readability */
+    }
+    .container {
+        max-width: 960px; /* Control the maximum width of the container */
+        margin: 40px auto; /* Center the container on the page with top and bottom margin */
+        padding: 20px; /* Space inside the container */
+        background-color: rgba(255, 255, 255, 0.8);  /* Semi-transparent white background */
+        border-radius: 10px; /* Rounded corners for the container */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        border: 1px solid #ccc; /* Light grey border */
+    }
+    .table {
+        width: 100%; /* Table width is the full width of the container */
+        margin-top: 20px; /* Space above the table */
+        border-collapse: collapse; /* Borders between cells are merged */
+    }
+    .table th, .table td {
+        text-align: left; /* Aligning text to the left in table headers and cells */
+        padding: 12px; /* Padding inside table cells */
+        border-bottom: 2px solid #e1e1e1; /* Light grey row separation */
+    }
+    a {
+        color: #007bff; /* Default bootstrap link color for consistency */
+        text-decoration: none; /* No underline on links */
+    }
+    a:hover {
+        color: #0056b3; /* Darker blue when hovered over */
+    }
+    .dashboard-link {
+        display: block;
+        margin-bottom: 20px; /* Space below the back link */
+    }
+    .search-form {
+        margin-bottom: 20px; /* Space below the search form */
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container mt-3">
+<div class="container">
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
     <h1>Medical Records</h1>
-    <p>Here you can view all medical records for your pets.</p>
+    <p>Here are all the medical records for your pets:</p>
 
-    <!-- Optional: Add a search form to filter records -->
-    <form method="get" class="search-form">
-        <input type="text" name="search" placeholder="Search records...">
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-
-    <!-- Medical Records Table -->
-    <div class="table-responsive">
+    {% if records %}
         <table class="table">
             <thead>
                 <tr>
                     <th>Pet Name</th>
-                    <th>Date</th>
-                    <th>Treatment</th>
-                    <th>Diagnosis</th>
-                    <th>Notes</th>
+                    <th>Date Uploaded</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for record in records %}
-                <tr>
-                    <td>{{ record.pet.name }}</td>
-                    <td>{{ record.date }}</td>
-                    <td>{{ record.treatment }}</td>
-                    <td>{{ record.diagnosis }}</td>
-                    <td>{{ record.notes }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ record.pet.name }}</td>
+                        <td>{{ record.uploaded_date|date:"Y-m-d" }}</td>
+                        <td>
+                            <a href="{{ record.document.url }}" target="_blank">View</a>
+                        </td>
+                    </tr>
                 {% empty %}
-                <tr>
-                    <td colspan="5">No medical records found.</td>
-                </tr>
+                    <tr>
+                        <td colspan="3">No medical records found.</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+    {% else %}
+        <p>No medical records available.</p>
+    {% endif %}
 </div>
 {% endblock %}

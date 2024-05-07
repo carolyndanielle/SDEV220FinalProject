@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+    .container {
+        max-width: 960px;  /* Control the maximum width of the container */
+        margin: auto;  /* Center the container on the page */
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        color: #0e0d0d; /* Ensuring text is black for readability */
+        padding: 20px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between; /* Aligns content to space between */
+    }
+    .pet-details {
+        width: 50%;
+    }
+    .pet-photo {
+        width: 40%;
+        text-align: center;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="pet-details">
+        <a href="{% url 'manage_pets' %}" class="manage_pets">View all pets</a>
+        <p style="margin-bottom: 20px;"><a href="{% url 'upload_photo' pet.id %}" class="btn btn-sm btn-light">Upload Photo</a></p>
+        <h2>{{ pet.name }}</h2>
+        <p><strong>Breed:</strong> {{ pet.breed }}</p>
+        <p><strong>Born:</strong> {{ pet.born }}</p>
+        <p><strong>Age:</strong> {{ pet.age }}</p>
+        <p><strong>Weight:</strong> {{ pet.weight }} lbs</p>
+        <p><strong>Color:</strong> {{ pet.color }}</p>
+        <p><strong></strong></p>
+        <!-- Additional pet details can be added here -->
+    </div>
+    <div class="pet-photo">
+        {% if pet.photo %}
+            <img src="{{ pet.photo.url }}" alt="Photo of {{ pet.name }}">
+        {% else %}
+            <p>No photo available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
