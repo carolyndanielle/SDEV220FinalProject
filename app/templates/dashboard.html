@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Overlay container for the dashboard content -->
+<div class="dashboard-container">
+    <div class="dashboard-content">
+        <h1>Pet Owner Dashboard</h1>
+        <p>Welcome to Your Dashboard</p>
+
+        <!-- Top-right navigation for profile and settings -->
+        <nav class="top-right-nav">
+            <ul>
+                <li><a href="{% url 'app:profile' %}">My Profile</a></li>
+                <li><a href="{% url 'app:logout' %}">logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main dashboard navigation -->
+        <nav class="dashboard-nav">
+            <ul>
+                <li><a href="{% url 'manage_pets' %}">Manage Pets</a></li>
+                <li><a href="{% url 'medical_records' %}">Medical Records</a></li>
+                <li><a href="{% url 'vaccination_records' %}">Vaccination Records</a></li>
+                <li><a href="{% url 'appointments_view' %}">View Appointments</a></li>
+                <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
+            </ul>
+        </nav>
+        <!-- Additional dashboard widgets or content areas go here -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Happy Paws Pet Clinic{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block extra_css %}{% endblock %} <!-- Placeholder for additional page-specific CSS -->
+</head>
+<body>
+    <div id="frame">
+        <div id="sky"></div>
+        <div id="moon"></div>
+        <div id="cat"></div>
+        <div id="wall"></div>
+        <div id="buildings"></div>
+    </div>
+    
+    <header>
+        <!-- Navigation goes here -->
+    </header>
+  
+    <!-- Message display section for Django's messaging framework -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+  
+    <main>
+        {% block content %}
+        <!-- Child templates will insert content here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer goes here -->
+    </footer>
+
+    {% block extra_js %}{% endblock %} <!-- Placeholder for additional page-specific JavaScript -->
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+   
+{% block extra_css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
+
+<style>
+    body {
+        color: #0e0d0d;  /* Ensuring text is black for readability */
+        display: flex;  /* Use flexbox for centering */
+        justify-content: center;  /* Center horizontally */
+        align-items: center;  /* Center vertically */
+        min-height: 100vh;  /* Minimum height to take full viewport */
+        margin: 0;  /* Remove default margin */
+    }
+    .container {
+        width: 80%;  /* Control the width of the container */
+        padding: 20px;  /* Space inside the container */
+        background-color: rgba(255, 255, 255, 0.8);  /* Semi-transparent white background */
+        border-radius: 10px;  /* Rounded corners for the container */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  /* Subtle shadow for depth */
+        text-align: center;  /* Center text inside the container */
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        dateClick: function(info) {
+            // Handle the date click event
+            var dateStr = info.dateStr; // Get the date as string
+            // Set the date in a hidden form field or display it in an alert
+            alert('Selected date: ' + dateStr);
+        }
+    });
+    calendar.render();
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'dashboard' %}" class="dashboard-link">Back to Dashboard</a>
+    <h1>Book Your Appointment</h1>
+    <div id="calendar"></div> <!-- Calendar will be rendered here -->
+    <form method="post" action="{% url 'book_appointment' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Appointment</button>
+    </form>
+</div>
+{% endblock %}
